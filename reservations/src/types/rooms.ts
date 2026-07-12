@@ -6,3 +6,4 @@ export interface Room {
   description: string,
   isActive: boolean
 }
+
