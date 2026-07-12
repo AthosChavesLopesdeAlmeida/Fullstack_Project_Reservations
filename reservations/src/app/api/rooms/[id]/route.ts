@@ -23,7 +23,7 @@ export async function GET(
   return NextResponse.json(room)
 }
 
-export async function PUT(
+export async function PATCH(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
@@ -33,18 +33,14 @@ export async function PUT(
   }
 
   const { id } = await params
-  const { name, capacity, location, description, isActive } = await req.json()
+  const body = await req.json()
 
   const existingRoom = await prisma.room.findUnique({ where: { id } })
   if (!existingRoom) {
     return NextResponse.json({ message: 'Sala não encontrada' }, { status: 404 })
   }
 
-  const room = await prisma.room.update({
-    where: { id },
-    data: { name, capacity, location, description, isActive }
-  })
-
+  const room = await prisma.room.update({ where: { id }, data: body })
   return NextResponse.json(room)
 }
 
