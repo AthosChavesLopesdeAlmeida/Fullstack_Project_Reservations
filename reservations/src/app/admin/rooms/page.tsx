@@ -72,7 +72,7 @@ const Page = () => {
 
       <section className="bg-[#2b2d31] p-8 rounded-lg shadow-lg border border-[#232428]">
         <div className="text-center mb-6">
-          <h3 className="text-2xl font-bold text-white mb-2">Create an account</h3>
+          <h3 className="text-2xl font-bold text-white mb-2">Registre uma sala</h3>
         </div>
         
         <form onSubmit={(e) => submitForm(e)} className="flex flex-col gap-4 text-left">

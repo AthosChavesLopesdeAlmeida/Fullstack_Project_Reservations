@@ -1,12 +1,33 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { apiFetch } from '@/lib/fetcher'
+type User = { userId: string; name: string; role: string };
 
 const Page = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const router = useRouter()
+  const [user, setUser] = useState<User | null>(null)
+  
+  const fetchUserName = async () => {
+    const res = await apiFetch('/api/me', {method: 'GET'})
+    if (!res.ok) return;
+    const data = await res.json()
+    setUser(data)
+  }
+  
+  useEffect(() => {
+    fetchUserName()
+  }, [])
+  
+  useEffect(() => {
+    if (user) {
+      router.push('/')
+    }
+  }, [user, router])
+
 
   const submitForm = async (e: React.SubmitEvent) => {
     e.preventDefault()
