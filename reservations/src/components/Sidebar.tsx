@@ -28,7 +28,7 @@ export const Sidebar = () => {
   const links = [
     { href: "/", label: "Home" },
     { href: "/rooms", label: "Salas" },
-    { href: "/reservations", label: "Minhas reservas" },
+    { href: "/reservations", label: "Criar reservas" },
     { href: "/me", label: "Minha conta"}
   ];
 

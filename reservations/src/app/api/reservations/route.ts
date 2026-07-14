@@ -50,7 +50,10 @@ export async function GET(req: NextRequest) {
 
   const reservations = await prisma.reservation.findMany({
     where: user.role === 'ADMIN' ? {} : { userId: user.userId },
-    include: { room: { select: { id: true, name: true } } },
+    include: {
+      room: { select: { id: true, name: true } },
+      user: { select: { id: true, name: true } },
+    },
     orderBy: { startTime: 'desc' }
   })
 

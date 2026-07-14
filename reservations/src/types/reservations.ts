@@ -8,6 +8,7 @@ export interface Reservation {
   startTime: Date,
   endTime: Date,
   status: Status,
-  roomId: string
+  roomId: string,
   room: { id: string; name: string };
+  user: { id: string; name: string };
 }
