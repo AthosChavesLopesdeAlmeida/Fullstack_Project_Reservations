@@ -2,6 +2,7 @@
 import { apiFetch } from "@/lib/fetcher";
 import { Status } from "@/types/reservations";
 import { Reservation } from "@/types/reservations";
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from 'react'
 import React from 'react'
 
@@ -14,6 +15,7 @@ const Page = () => {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [error, setError] = useState("");
+  const router = useRouter()
 
   const fetchReservations = async () => {
     const res = await apiFetch('/api/reservations', { method: 'GET' })
@@ -63,6 +65,7 @@ const Page = () => {
     setStartTime("");
     setEndTime("");
     await fetchReservations()
+    router.push('/')
   }
 
   async function cancelReservation(id: string) {

@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { apiFetch } from '@/lib/fetcher'
+import { useRouter } from 'next/navigation'
 
 const Page = () => {
   const [capacity, setCapacity] = useState(0)
@@ -8,6 +9,7 @@ const Page = () => {
   const [name, setName] = useState('')
   const [location, setLocation] = useState('')
   const [error, setError] = useState('')
+  const router = useRouter()
 
   const submitForm = async (e: React.SubmitEvent) => {
     e.preventDefault()
@@ -27,6 +29,7 @@ const Page = () => {
     setDescription('')
     setName('')
     setLocation('')
+    router.push('/rooms')
   }
 
   return (
